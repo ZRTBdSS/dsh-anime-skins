@@ -1,0 +1,17 @@
+{
+  "id": "dsh-anime-skins",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "client": {
+    "main": "lib/client.js",
+    "inject": [
+      "@deepseek-ai/dsh-client-runtime",
+      "@deepseek-ai/dsh-client-ui-theme",
+      "@deepseek-ai/dsh-client-ui-settings"
+    ]
+  },
+  "engines": {
+    "dsh": ">=0.1.0"
+  },
+  "contributes": {}
+}

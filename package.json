@@ -1,0 +1,38 @@
+{
+  "name": "dsh-anime-skins",
+  "version": "1.0.0",
+  "description": "DSH anime skin manager: 6 skins, custom message layout, floating menus and theme-adaptive UI overrides.",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "index.js",
+    "cordis.patch.yml",
+    "dsh.plugin.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-theme",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "scripts": {
+    "check": "node --check lib/client.js && node --check lib/index.js"
+  }
+}
