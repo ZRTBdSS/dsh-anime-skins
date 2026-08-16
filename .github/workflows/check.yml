@@ -33,10 +33,14 @@ jobs:
           test -f cordis.patch.yml
           test -f README.md
           test -f LICENSE
-          test -f docs/images/classic.jpg
-          test -f docs/images/asuna.jpg
-          test -f docs/images/asuka.jpg
-          test -f docs/images/megumi.jpg
-          test -f docs/images/rin.jpg
-          test -f docs/images/artoria.jpg
+          test -f docs/images/asuna-session.jpg
+          test -f docs/images/asuna-new.jpg
+          test -f docs/images/asuka-session.jpg
+          test -f docs/images/asuka-new.jpg
+          test -f docs/images/megumi-session.jpg
+          test -f docs/images/megumi-new.jpg
+          test -f docs/images/rin-session.jpg
+          test -f docs/images/rin-new.jpg
+          test -f docs/images/artoria-session.jpg
+          test -f docs/images/artoria-new.jpg
           echo "required files OK"

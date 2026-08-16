@@ -13,15 +13,15 @@ DSH 动漫皮肤管理器：一套浏览器端插件，提供 6 种皮肤，以�
 
 ## 皮肤预览
 
-以下为实际 DSH UI 运行截图（不同 DSH 版本/窗口宽度下可能略有差异）。
+以下为实际 DSH UI 运行截图（不同 DSH 版本/窗口宽度下可能略有差异）。每套皮肤展示“会话视图”和“新建会话”两张图。
 
-| 经典 | 亚丝娜 | 明日香 |
+| 皮肤 | 会话视图 | 新建会话 |
 | --- | --- | --- |
-| ![经典](docs/images/classic.jpg) | ![亚丝娜](docs/images/asuna.jpg) | ![明日香](docs/images/asuka.jpg) |
-
-| 加藤惠 | 远坂凛 | 阿尔托莉雅 |
-| --- | --- | --- |
-| ![加藤惠](docs/images/megumi.jpg) | ![远坂凛](docs/images/rin.jpg) | ![阿尔托莉雅](docs/images/artoria.jpg) |
+| 亚丝娜 | ![亚丝娜会话](docs/images/asuna-session.jpg) | ![亚丝娜新建](docs/images/asuna-new.jpg) |
+| 明日香 | ![明日香会话](docs/images/asuka-session.jpg) | ![明日香新建](docs/images/asuka-new.jpg) |
+| 加藤惠 | ![加藤惠会话](docs/images/megumi-session.jpg) | ![加藤惠新建](docs/images/megumi-new.jpg) |
+| 远坂凛 | ![远坂凛会话](docs/images/rin-session.jpg) | ![远坂凛新建](docs/images/rin-new.jpg) |
+| 阿尔托莉雅 | ![阿尔托莉雅会话](docs/images/artoria-session.jpg) | ![阿尔托莉雅新建](docs/images/artoria-new.jpg) |
 
 ## 功能
 
