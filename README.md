@@ -5,13 +5,15 @@
 ![DSH](https://img.shields.io/badge/DSH-plugin-8A2BE2)
 ![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen)
 
-DSH 动漫皮肤管理器：一套客户端插件，提供 6 种皮肤，并实现预览 HTML 的完整 UI 布局：浮动 ☰ 菜单、会话列表分组子菜单、皮肤切换弹窗、主题化输入区/下载面板/命令菜单等。
+DSH 动漫皮肤管理器：一套浏览器端插件，提供 6 种皮肤，以及配套的浮动 ☰ 菜单、会话列表分组子菜单、皮肤切换弹窗和主题化 UI 覆盖。
 
 > ⚠️ 这是一个 **plain cordis 插件（非 bundle）**，不是 `dsh.bundle` 插件。
 > 请使用 `dsh plugin --profile ... add` 安装为普通 cordis 依赖 + `cordis.patch.yml` 插入行；
 > **不要**把它加入 `dsh.profile.bundles`，bundle 方式曾导致 DSH 启动失败（`code=1`）。
 
 ## 皮肤预览
+
+以下为实际 DSH UI 运行截图（不同 DSH 版本/窗口宽度下可能略有差异）。
 
 | 经典 | 亚丝娜 | 明日香 |
 | --- | --- | --- |
@@ -25,16 +27,20 @@ DSH 动漫皮肤管理器：一套客户端插件，提供 6 种皮肤，并实�
 
 - 6 套皮肤：经典 / 亚丝娜 / 明日香 / 加藤惠 / 远坂凛 / 阿尔托莉雅
 - 浮动 `☰` 菜单：会话列表（按工作区分组）、皮肤切换、打开原生设置
-- 会话列表支持工作区展开/折叠，会话行右侧 `⋯` 四层菜单（打开/重命名/归档/删除）
+- 会话列表支持工作区展开/折叠，会话行右侧 `⋯` 菜单（打开/重命名/归档）
+  - 删除操作不包含在本插件内，由 DSH 核心或其它插件提供
 - 回到底部主题按钮（按实际滚动容器定位）
 - 皮肤选择持久化：cookie（host 级，跨随机端口重启恢复） + localStorage 兜底
-- 主题适配：顶栏、输入条、下载胶囊/面板、加号命令菜单、触发按钮、模式标签、底部统计行等（仅作用于 DSH 原生 UI 与本插件自身 UI，不包含其它插件的功能）
+- 主题适配：顶栏、输入条、下载胶囊/面板、加号命令菜单、底部统计行等 DSH 原生 UI
+  - 对部分其它插件暴露的按钮/标签仅做颜色覆盖，不实现或依赖其功能（见“与本插件实际相关的其它插件情况”）
 
 ## 要求
 
-- DeepSeek Harness Desktop（DSH）
-- 浏览器端客户端运行时（`@deepseek-ai/dsh-client-runtime`）
-- 推荐 DSH 版本：`>= 0.1.0`
+- DSH Web UI（桌面版内置浏览器或独立 Web UI 均可，本插件是浏览器端插件）
+- 浏览器端客户端运行时：`@deepseek-ai/dsh-client-runtime`
+- 实测环境版本：`@deepseek-ai/dsh-client-runtime >= 0.1.0-rc.6`
+  - 对应 DSH 构建：DeepSeek Harness Desktop 内置 `0.1.0-rc.6` 客户端核心包
+  - `dsh.plugin.json` 中 `engines.dsh` 已设为 `>=0.1.0-rc.6`
 
 ## 安装
 
@@ -74,7 +80,7 @@ dsh plugin --profile web remove dsh-anime-skins
 
 1. 安装并重启后，右上角会出现浮动 `☰` 按钮。
 2. 点击 `☰`：
-   - **会话列表**：按工作区分组展示会话，点击工作区展开/折叠；右侧 `⋯` 可打开/重命名/归档/删除。
+   - **会话列表**：按工作区分组展示会话，点击工作区展开/折叠；右侧 `⋯` 可打开/重命名/归档（删除由 DSH 核心或其它插件提供）。
    - **皮肤切换**：打开皮肤选择弹窗，点击卡片即切换并自动保存。
    - **设置**：打开 DSH 原生设置窗口（居中显示）。
 3. 会话滚动时，右下角会出现主题化“回到底部”按钮。
@@ -85,9 +91,9 @@ dsh plugin --profile web remove dsh-anime-skins
 
 | 插件 | 本插件实际行为 |
 | --- | --- |
-| dsh-smooth-stream | 有 CSS 适配：`.dss-root`、`.dss-nr-*`、`.dss-dr-*` 会按皮肤透明化并配色。`dsh-asuna-bridge` 是独立插件，不属于本包；如需更完整的内层透明效果可自行安装 bridge。 |
 | dsh-better-sidebar | 当前版本会隐藏其折叠浮层/面板（`.W-zNGW_*`），**不保留右侧展开区域**。如果你需要继续使用 better-sidebar，可能需要自行调整本插件的隐藏规则。 |
 | dsh-usage-stats | 仅对 `.usg_*` 文字颜色做统一样式。由于本插件隐藏原生侧栏，其侧栏挂载点默认不可见；本插件**没有**实现“搬到底部统计行”的功能。 |
+| dsh-prompt-enhancer / dsh-composer-expand / dsh-files 等输入条插件 | 仅对这些插件暴露在输入条中的按钮/模式标签做颜色覆盖（如 `.dsh-enh-mode`、`.cpex-btn`、`.dsh-files-btn`），不提供或依赖其功能。 |
 | 其它 UI 插件 | 未做专门适配；如果出现视觉冲突，建议停用对应插件。单个 UI 插件停用不会破坏 DSH 启动。 |
 
 ## 目录结构
