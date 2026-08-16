@@ -1,0 +1,42 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Syntax check
+        run: npm run check
+
+      - name: Validate JSON manifests
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('package.json','utf8')); JSON.parse(require('fs').readFileSync('dsh.plugin.json','utf8')); console.log('JSON OK')"
+
+      - name: Validate required files
+        run: |
+          test -f lib/client.js
+          test -f lib/index.js
+          test -f lib/index.d.ts
+          test -f cordis.patch.yml
+          test -f README.md
+          test -f LICENSE
+          test -f docs/images/classic.jpg
+          test -f docs/images/asuna.jpg
+          test -f docs/images/asuka.jpg
+          test -f docs/images/megumi.jpg
+          test -f docs/images/rin.jpg
+          test -f docs/images/artoria.jpg
+          echo "required files OK"

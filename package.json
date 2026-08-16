@@ -12,6 +12,7 @@
   },
   "files": [
     "lib",
+    "docs",
     "index.js",
     "cordis.patch.yml",
     "dsh.plugin.json",
